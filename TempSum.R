@@ -18,6 +18,7 @@ TempSum <- function(daily.temp, date, base.temp = 0, start.date) {
   ## Tests
   if(length(daily.temp) != length(date)) {stop("Vectors of daily temperature and date don't have the same length!")}
   if(!any(date == start.date)) {stop("Start date is not included in the date-vector!")}
+  if(base.temp < 0) {stop("Base temperature is smaller than zero!")}
   
   ## Calculations
   dat <- data.frame(date, daily.temp)
