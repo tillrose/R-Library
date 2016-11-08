@@ -6,8 +6,8 @@
 
 ## Input ##
 
-# mod:                A linear mode (lm)
-# digits_parameter:   How many digits should the parameter-values have?
+# mod: A linear mode (lm)
+# digits_parameter: How many digits should the parameter-values have?
 
 
 LinRegParameters <- function(mod, digits_parameter = 2) {
