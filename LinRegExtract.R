@@ -16,10 +16,10 @@ LinRegParameters <- function(mod, digits_parameter = 2) {
   m <- mod
   length.levels <- length(unlist(mod$xlevels))
   interaction <- (length(m$coefficients) - 2) >= length.levels
-  a <- signif(coef(m)[1], digits = digits_parameter)
-  b <- signif(abs(coef(m)[2]), digits = digits_parameter)
-  c <- signif(coef(m)[3:(3 + (length.levels-2))], digits = digits_parameter)
-  if(isTRUE(interaction)) {d <- signif(coef(m)[(3 + (length.levels-1)):length(coef(m))], digits = digits_parameter)} else
+  a <- coef(m)[1]
+  b <- abs(coef(m)[2])
+  c <- coef(m)[3:(3 + (length.levels-2))]
+  if(isTRUE(interaction)) {d <- coef(m)[(3 + (length.levels-1)):length(coef(m))]} else
   {d <- 0}
 
   l <- list(a = a, b = b, c = c, d = d)
@@ -40,6 +40,9 @@ LinRegParameters <- function(mod, digits_parameter = 2) {
                                      l$b + unname(l$d[i-1]))
     
   }
+  
+  parameters$intercept <- signif(parameters$intercept, digits = digits_parameter)
+  parameters$slope <- signif(parameters$slope, digits = digits_parameter)
   
   return(parameters)
   
