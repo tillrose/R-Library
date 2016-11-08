@@ -16,10 +16,10 @@ LinRegParameters <- function(mod, digits_parameter = 2) {
   m <- mod
   length.levels <- length(unlist(mod$xlevels))
   interaction <- (length(m$coefficients) - 2) >= length.levels
-  a <- round(coef(m)[1], digits = digits_parameter)
-  b <- round(abs(coef(m)[2]), digits = digits_parameter)
-  c <- round(coef(m)[3:(3 + (length.levels-2))], digits = digits_parameter)
-  if(isTRUE(interaction)) {d <- round(coef(m)[(3 + (length.levels-1)):length(coef(m))], digits = digits_parameter)} else
+  a <- signif(coef(m)[1], digits = digits_parameter)
+  b <- signif(abs(coef(m)[2]), digits = digits_parameter)
+  c <- signif(coef(m)[3:(3 + (length.levels-2))], digits = digits_parameter)
+  if(isTRUE(interaction)) {d <- signif(coef(m)[(3 + (length.levels-1)):length(coef(m))], digits = digits_parameter)} else
   {d <- 0}
 
   l <- list(a = a, b = b, c = c, d = d)
