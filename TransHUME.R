@@ -220,9 +220,10 @@ MeasurementToHume <- function(data, measurement.variable, date.variable, variant
     
     if(file.exists(measurement.path)) { existing.data <- read.table(measurement.path, header = TRUE, stringsAsFactors = FALSE);
     existing.data <- as.data.frame(existing.data);
-    new.data <- merge(existing.data, measurement.data, by = "Time");
+    new.data <- merge(existing.data, measurement.data, by = "Time", all = TRUE);
     if(any(names(new.data) == paste0(names(measurement.data)[-1], ".x"))) {new.data[,names(new.data) == paste0(names(measurement.data)[-1], ".x")] <- NULL};
     names(new.data)[names(new.data) == paste0(names(measurement.data)[-1], ".y")] <- names(measurement.data)[-1];
+    new.data[is.na(new.data)] <- 0
     write.table(new.data, file = measurement.path, quote = FALSE, row.names = FALSE)
     } else {write.table(measurement.data, file = measurement.path, quote = FALSE, row.names = FALSE)}
     
