@@ -47,3 +47,4 @@ LinRegParameters <- function(mod, digits_parameter = 2) {
   return(parameters)
   
 }
+
