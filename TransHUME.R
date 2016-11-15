@@ -8,6 +8,13 @@ pacman::p_load(raster)
 
 InitializeHUME <- function(start, end, step = 1, project, year, variants, project.location, weather.source, template.opt = FALSE, template.param = FALSE, template.state = FALSE) {
   
+  ## Checks
+  if(!file.exists(project.location)) {stop("Error: Project location does not exist!")}
+  if(!file.exists(weather.source)) {stop("Error: File with data for weather does not exist!")}
+  if(template.opt != FALSE) {if(!file.exists(template.opt)) {stop("Error: File with template for options does not exist!")}}
+  if(template.param != FALSE) {if(!file.exists(template.param)) {stop("Error: File with template for parameters does not exist!")}}
+  if(template.state != FALSE) {if(!file.exists(template.state)) {stop("Error: File with template for states does not exist!")}}
+  
   ## Aendern des Datums von y-m-d in Excel-Nummer
   start.time <- as.numeric(as.Date(start)) + 25569
   end.time <- as.numeric(as.Date(end)) + 25569
