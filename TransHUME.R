@@ -181,7 +181,7 @@ StateToHUME <- function(date, input.value, input.variable, variants, project, ye
 ##########################################################################################
 
 
-MeasurementToHume <- function(data, measurement.variable, date.variable, variants, project, year, project.location) {
+MeasurementToHUME <- function(data, measurement.variable, date.variable, variants, project, year, project.location) {
   
   data <- as.data.frame(data)
   data[is.na(data)] <- 0
