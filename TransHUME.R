@@ -215,7 +215,7 @@ MeasurementToHume <- function(data, measurement.variable, date.variable, variant
     
     measurement.path <-  file.path(project.location, project, "Measurements", year, paste0(project, "_", name, "_", submodel, ".txt"), fsep = "\\") 
     measurement.string <- file.path("Measurements", year, paste0(project, "_", name, "_", submodel, ".txt"), fsep = "\\")
-    ini.path  <- file.path(project.location, project, "Ini", year, "IniFn", paste0(project, "_", name, ".ini"), fsep = "\\") 
+    ini.path  <- file.path(project.location, project, paste0(project, "_", name, ".ini"), fsep = "\\") 
     
     new.line <- data.frame(section = "MeasurementFiles", name = submodel, value = measurement.string) 
     existing.ini <- data.frame(readIniFile(filename = ini.path, token = "=", commenttoken = ";", aslist = FALSE), stringsAsFactors = FALSE)
