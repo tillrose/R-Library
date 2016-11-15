@@ -144,6 +144,9 @@ StateToHUME <- function(date, input.value, input.variable, variants, project, ye
   ## Checks
   if(length(date) != length(input.value)) {stop("Error: Vectors for date and input.value don't have the same length!")}
   
+  ## Aufspannen der Varianten
+  variants <- data.frame(expand.grid(variants, stringsAsFactors = FALSE))
+  
   date <- strftime(as.Date(date), format = "%d.%m.%Y")
   input <- cbind(date, input.value)
   grid <- expand.grid(input.variable = input.variable, date = date)
