@@ -55,8 +55,8 @@ InitializeHUME <- function(start, end, step = 1, project, year, variants, projec
     state.path <- paste0("\\Ini\\State\\", "State_", project, "_", name, ".ini")
     param.path <- paste0("\\Ini\\Param\\", "Param_", project, "_", name, ".ini")
     option.path <-paste0("\\Ini\\Opt\\", "Opt_", project, "_", name, ".ini")
-    path <- paste0(file.path(project.location, project, "Ini", fsep = "\\"), "\\", project, "_", name, ".ini")
-    path.fn <- paste0(file.path(project.location, project, "Ini", fsep = "\\"), "\\", project, "_", name, ".fn")
+    path <- paste0(file.path(project.location, project, fsep = "\\"), "\\", project, "_", name, ".ini")
+    path.fn <- paste0(file.path(project.location, project, fsep = "\\"), "\\", project, "_", name, ".fn")
     
     variant.ini <- paste0("[TimeInit]\n",
                           "Startzeit=", start.time, "\n",
@@ -90,7 +90,7 @@ InitializeHUME <- function(start, end, step = 1, project, year, variants, projec
   
   ## Zentrale fn. Datei
   reference.list <- paste(reference.list, collapse = "\n")
-  write.table(reference.list, file = paste0(file.path(project.location, project, "Ini", fsep = "\\"), "\\", project, "_", year, ".fn"), quote = FALSE, row.names = FALSE, col.names = FALSE)
+  write.table(reference.list, file = paste0(file.path(project.location, project, fsep = "\\"), "\\", project, "_", year, ".fn"), quote = FALSE, row.names = FALSE, col.names = FALSE)
   
 }
 
