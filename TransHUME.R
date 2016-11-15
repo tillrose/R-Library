@@ -35,7 +35,7 @@ InitializeHUME <- function(start, end, step = 1, project, year, variants, projec
   state.reference <- "State.ini"
   param.reference <- "Param.ini"
   option.reference <- "Opt.ini"
-  weather.reference <- paste0("\\Weather\\", year, "\\", list.files(file.path(project.location, project, "Weather", year, fsep = "\\"))) 
+  weather.reference <- file.path("Weather", year, list.files(file.path(project.location, project, "Weather", year, fsep = "\\")), fsep = "\\") 
   
   ## Ini-Files fuer Varianten
   
@@ -47,8 +47,8 @@ InitializeHUME <- function(start, end, step = 1, project, year, variants, projec
     
     for(j in 1:ncol(variants)) {
       
-      name <-     if(j == 1) {paste(names(variants)[j], variants[i,j], sep = "")}
-      else {paste(name, paste(names(variants)[j], variants[i,j], sep = ""), sep = "_")}
+      name <-     if(j == 1) {paste(names(variants)[j], variants[i,j], sep = "")} else
+        {paste(name, paste(names(variants)[j], variants[i,j], sep = ""), sep = "_")}
       
     }
     
