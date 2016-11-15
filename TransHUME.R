@@ -23,7 +23,7 @@ InitializeHUME <- function(start, end, step = 1, project, year, variants, projec
   if(file.exists(file.path(project.location, project, "Measurements", year, fsep = "\\"))) {print("Hinweis: Das Jahr im Measurementspfad zu diesem Projekt existiert bereits")} else {dir.create(file.path(project.location, project, "Measurements", year, fsep = "\\"))}
   if(file.exists(file.path(project.location, project, "Ini", fsep = "\\"))) {print("Hinweis: Der Inipfad zu diesem Projekt existiert bereits")} else {dir.create(file.path(project.location, project, "Ini", fsep = "\\"))}
   if(file.exists(file.path(project.location, project, "Ini", year, fsep = "\\"))) {print("Hinweis: Das Jahr im Inipfad zu diesem Projekt existiert bereits")} else {dir.create(file.path(project.location, project, "Ini", year, fsep = "\\"))}
-  if(file.exists(file.path(project.location, project, "Ini", year, "IniFn", fsep = "\\"))) {print("Hinweis: Der IniFn-pfad zu diesem Projekt existiert bereits")} else {dir.create(file.path(project.location, project, "Ini", year, "IniFn", fsep = "\\"))}
+  #if(file.exists(file.path(project.location, project, "Ini", year, "IniFn", fsep = "\\"))) {print("Hinweis: Der IniFn-pfad zu diesem Projekt existiert bereits")} else {dir.create(file.path(project.location, project, "Ini", year, "IniFn", fsep = "\\"))}
   if(file.exists(file.path(project.location, project, "Ini", year, "Opt", fsep = "\\"))) {print("Hinweis: Der Opt-pfad zu diesem Projekt existiert bereits")} else {dir.create(file.path(project.location, project, "Ini", year, "Opt", fsep = "\\"))}
   if(file.exists(file.path(project.location, project, "Ini", year, "Param", fsep = "\\"))) {print("Hinweis: Der Param-pfad zu diesem Projekt existiert bereits")} else {dir.create(file.path(project.location, project, "Ini", year, "Param", fsep = "\\"))}
   if(file.exists(file.path(project.location, project, "Ini", year, "State", fsep = "\\"))) {print("Hinweis: Der State-pfad zu diesem Projekt existiert bereits")} else {dir.create(file.path(project.location, project, "Ini", year, "State", fsep = "\\"))}
@@ -35,7 +35,7 @@ InitializeHUME <- function(start, end, step = 1, project, year, variants, projec
   state.reference <- "State.ini"
   param.reference <- "Param.ini"
   option.reference <- "Opt.ini"
-  weather.reference <- paste0("..\\..\\..\\Weather\\", year, "\\", list.files(file.path(project.location, project, "Weather", year, fsep = "\\"))) 
+  weather.reference <- paste0("\\Weather\\", year, "\\", list.files(file.path(project.location, project, "Weather", year, fsep = "\\"))) 
   
   ## Ini-Files fuer Varianten
   
@@ -52,11 +52,11 @@ InitializeHUME <- function(start, end, step = 1, project, year, variants, projec
       
     }
     
-    state.path <- paste0("..\\State\\", "State_", project, "_", name, ".ini")
-    param.path <- paste0("..\\Param\\", "Param_", project, "_", name, ".ini")
-    option.path <-paste0("..\\Opt\\", "Opt_", project, "_", name, ".ini")
-    path <- paste0(file.path(project.location, project, "Ini", year, "IniFn", fsep = "\\"), "\\", project, "_", name, ".ini")
-    path.fn <- paste0(file.path(project.location, project, "Ini", year, "IniFn", fsep = "\\"), "\\", project, "_", name, ".fn")
+    state.path <- paste0("\\Ini\\State\\", "State_", project, "_", name, ".ini")
+    param.path <- paste0("\\Ini\\Param\\", "Param_", project, "_", name, ".ini")
+    option.path <-paste0("\\Ini\\Opt\\", "Opt_", project, "_", name, ".ini")
+    path <- paste0(file.path(project.location, project, "Ini", fsep = "\\"), "\\", project, "_", name, ".ini")
+    path.fn <- paste0(file.path(project.location, project, "Ini", fsep = "\\"), "\\", project, "_", name, ".fn")
     
     variant.ini <- paste0("[TimeInit]\n",
                           "Startzeit=", start.time, "\n",
@@ -90,7 +90,7 @@ InitializeHUME <- function(start, end, step = 1, project, year, variants, projec
   
   ## Zentrale fn. Datei
   reference.list <- paste(reference.list, collapse = "\n")
-  write.table(reference.list, file = paste0(file.path(project.location, project, "Ini", year, "IniFn", fsep = "\\"), "\\", project, "_", year, ".fn"), quote = FALSE, row.names = FALSE, col.names = FALSE)
+  write.table(reference.list, file = paste0(file.path(project.location, project, "Ini", fsep = "\\"), "\\", project, "_", year, ".fn"), quote = FALSE, row.names = FALSE, col.names = FALSE)
   
 }
 
