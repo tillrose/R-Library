@@ -52,11 +52,12 @@ InitializeHUME <- function(start, end, step = 1, project, year, variants, projec
       
     }
     
-    state.path <- paste0("\\Ini\\State\\", "State_", project, "_", name, ".ini")
-    param.path <- paste0("\\Ini\\Param\\", "Param_", project, "_", name, ".ini")
-    option.path <-paste0("\\Ini\\Opt\\", "Opt_", project, "_", name, ".ini")
-    path <- paste0(file.path(project.location, project, fsep = "\\"), "\\", project, "_", name, ".ini")
-    path.fn <- paste0(file.path(project.location, project, fsep = "\\"), "\\", project, "_", name, ".fn")
+    state.path <- file.path("Ini", year, "State", paste0("State_", project, "_", name, ".ini"), fsep = "\\")
+    param.path <- file.path("Ini", year, "Param", paste0("Param_", project, "_", name, ".ini"), fsep = "\\")
+    option.path <- file.path("Ini", year, "Opt", paste0("Opt_", project, "_", name, ".ini"), fsep = "\\")
+
+    path.ini <- file.path(project.location, project, paste0(project, "_", name, ".ini"), fsep = "\\")
+    path.fn <- file.path(project.location, project, paste0(project, "_", name, ".fn"), fsep = "\\")
     
     variant.ini <- paste0("[TimeInit]\n",
                           "Startzeit=", start.time, "\n",
@@ -68,12 +69,12 @@ InitializeHUME <- function(start, end, step = 1, project, year, variants, projec
                           "OptionsIniFN=", option.path, "\n",
                           "WeatherFileFN=", weather.reference, "\n\n")
     
-    write.table(variant.ini, file = path, quote = FALSE, row.names = FALSE, col.names = FALSE)
+    write.table(variant.ini, file = path.ini, quote = FALSE, row.names = FALSE, col.names = FALSE)
     write.table(paste0(project, "_", name, ".ini"), file = path.fn, quote = FALSE, row.names = FALSE, col.names = FALSE)
     
-    state.path <- paste0(file.path(project.location, project, "Ini", year, "State", fsep = "\\"), "\\", "State_", project, "_", name, ".ini")
-    opt.path <- paste0(file.path(project.location, project, "Ini", year, "Opt", fsep = "\\"), "\\", "Opt_", project, "_", name, ".ini")
-    param.path <- paste0(file.path(project.location, project, "Ini", year, "Param", fsep = "\\"), "\\", "Param_", project, "_", name, ".ini")
+    state.path <- file.path(project.location, project, "Ini", year, "State", paste0("State_", project, "_", name, ".ini"), fsep = "\\")
+    opt.path <- file.path(project.location, project, "Ini", year, "Opt", paste0("Opt_", project, "_", name, ".ini"), fsep = "\\") 
+    param.path <- file.path(project.location, project, "Ini", year, "Param", paste0("Param_", project, "_", name, ".ini"), fsep = "\\")
     
     if(template.opt == FALSE) {write.table("", file = opt.path, quote = FALSE, row.names = FALSE, col.names = FALSE)} else
     {file.copy(template.opt, opt.path)}
